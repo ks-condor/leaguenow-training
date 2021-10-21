@@ -21,11 +21,11 @@ android {
         }
 
     }
-    compileSdk 30
+    compileSdk 31
     defaultConfig {
         applicationId APP_ID
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode Integer.valueOf(MOBILE_VERSION_CODE)
         versionName MOBILE_VERSION_NAME
         buildConfigField 'String', 'BASE_URL', '"https://www.thesportsdb.com/"'
@@ -71,7 +71,7 @@ dependencies {
 
     //Rooms
     implementation("androidx.room:room-ktx:$versions.room")
-    kapt 'androidx.room:room-compiler:2.4.0-alpha04'
+    kapt "androidx.room:room-compiler:$versions.room"
 
     // Navigation Fragment
     implementation("androidx.navigation:navigation-fragment-ktx:$versions.navigationFragment")
