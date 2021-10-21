@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:elevation="3dp"
+    android:background="@drawable/rectangle_white"
+    android:orientation="vertical"
+    android:id="@+id/card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_marginTop="10dp"
+    android:layout_marginTop="18dp"
+    android:layout_marginBottom="18dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="16dp"
+            android:id="@+id/badge"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            app:cornerRadius="16dp"
+            app:roundedCorners="all"
+            tools:src="@drawable/ic_team" />
+
+        <TextView
+            style="@style/CardTitle"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Ath Madrid"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_marginBottom="4dp"
+            style="@style/CardTitle.Small"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:gravity="center"
+            android:id="@+id/league"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Como entrenar a tu dragon repotente"
+            android:textColor="@color/grey_979797"/>
+
+</LinearLayout>

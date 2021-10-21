@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.HomeFragment">
+
+    <RelativeLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:id="@+id/lb_fteams"
+            style="@style/TextViewTitle.Medium"
+            android:text="@string/title_label_favorite_teams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/lb_fteams"
+            android:id="@+id/rv_favorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_favorite_team" />
+        <TextView
+            android:id="@+id/lb_teams"
+            android:layout_below="@+id/rv_favorites"
+            style="@style/TextViewTitle.Medium"
+            android:text="@string/title_label_teams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/lb_teams"
+            android:layout_gravity="center"
+            android:id="@+id/rv_teams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:spanCount="2"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_team" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/lb_teams"
+            android:scaleType="centerCrop"
+            android:layout_height="400dp"
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            app:lottie_rawRes="@raw/soccer_loading"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"/>
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

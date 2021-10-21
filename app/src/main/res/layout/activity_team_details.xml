@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.TeamDetailsActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.activities.TeamDetailsActivity">
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            tools:context=".ui.activities.TeamDetailsActivity">
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                tools:src="@color/black" />
+
+            <ImageView
+                android:id="@+id/badge"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/banner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-60dp"
+                android:contentDescription="@string/app_name"
+                tools:src="@drawable/ic_team" />
+
+            <TextView
+                android:id="@+id/tv_team_name"
+                style="@style/TextViewTitle.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/badge"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tv_team_foundation_year"
+                style="@style/TextViewTitle.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_team_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/blue_353c53"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/TextViewTitle.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_team_foundation_year"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="onSeeMore"
+                android:textColor="@color/grey_979797"
+                android:textSize="16sp"
+                tools:maxLines="4"
+                tools:text="El Arsenal Football Club (pronunciación en inglés: /ˈɑː(ɹ)sənəl ˈfʊtˌbɔl klʌb/) es un club de fútbol profesional con sede en Holloway, Londres, Inglaterra, que juega en la máxima categoría del fútbol de ese país, la Premier League. Uno de los más laureados del fútbol inglés, ha ganado 43 títulos en su país, incluyendo 13 campeonatos de liga y un récord de 13 Copas de Inglaterra; también ha ganado dos títulos internacionales: la Copa europea de Ferias en 1970 y la Recopa de Europa en 1994.\r\n\r\nFundado en 1886 en el sudeste de Londres, en 1893, se convirtió en el primer club del sur de Inglaterra en unirse a la Football League. Ganó sus primeros títulos —cinco ligas y dos FA Cups— en los años 1930. Luego de un período de escasez en los años posteriores a la Segunda Guerra Mundial, se convirtió en el segundo club del siglo XX en ganar el doblete, obteniendo el Campeonato de Liga y la FA Cup de la temporada 1970-71. Los logros siguieron en los años 1990 y 2000. Durante esos años, Arsenal ganó un doblete de copas nacionales, dos dobletes de Liga y Copa, y dos bicampeonatos de la Copa de Inglaterra. Finalizó una temporada de Liga invicto y se convirtió en el primer club de Londres en llegar a la final de la Liga de Campeones de la UEFA.\r\n\r\nLos colores tradicionales del club, el blanco y el rojo, han evolucionado con el tiempo. Del mismo modo, fue cambiando la ubicación del club; fundado en el distrito de Woolwich, en el sureste de Londres, en 1913 se mudó al norte de Londres, más exactamente en el distrito de Highbury, donde fue establecido el Arsenal Stadium, que funcionó hasta 2006, donde se hizo un traslado más corto, hacia los alrededores de Holloway, donde se levantó el actual Emirates Stadium. La estadía histórica del Arsenal en el norte de Londres, ha creado con el tiempo una fuerte rivalidad con el Tottenham Hotspur, conocida como el Derbi del Norte de Londres.4​\r\n\r\nArsenal posee una de las aficiones más numerosas del mundo.5​6​7​ Según la revista Forbes, el club fue el quinto club más valioso del mundo en 2014, con un valor de 1300 millones libras.8​" />
+
+            <TextView
+                android:id="@+id/btn_see_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_description"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="onSeeMore"
+                android:paddingStart="0dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/read_more"
+                android:textAllCaps="false"
+                android:textColor="@color/blue_22283d"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lb_events"
+                style="@style/TextViewTitle.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_see_more"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_label_eventos" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/lb_events"
+                android:textColor="@color/blue_22283d"
+                style="@style/TextViewTitle.Small"
+                android:text="No disponibles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@+id/btnFabFavorite"
+        android:contentDescription="@string/open_facebook"
+        android:onClick="onFabFacebook"
+        app:backgroundTint="@color/blue_22283d"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_facebook"
+        app:tint="@color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnFabFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/title_fab_favorite"
+        android:onClick="onFabFavorite"
+        app:backgroundTint="@color/blue_22283d"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        app:tint="@color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/btnFabFavorite"
+        android:contentDescription="@string/open_youtube"
+        android:onClick="onFabYoutube"
+        app:backgroundTint="@color/blue_22283d"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_youtube"
+        app:tint="@color/white" />
+</RelativeLayout>

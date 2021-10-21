@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:scaleType="centerCrop"
+            android:layout_height="400dp"
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            app:lottie_rawRes="@raw/error_404"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"/>
+
+        <TextView
+            android:layout_marginStart="30dp"
+            android:textStyle="bold"
+            style="@style/TextViewTitle.Big"
+            android:text="Oops!! 😱"
+            android:gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginStart="30dp"
+            android:textStyle="bold"
+            android:id="@+id/tvSubTitle"
+            style="@style/TextViewTitle.Big"
+            android:text="No hay internet."
+            android:gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginStart="30dp"
+            android:textStyle="bold"
+            style="@style/TextViewTitle.Medium"
+            android:text="Mantén la calma,"
+            android:gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginStart="30dp"
+            android:id="@+id/tvSubDescription"
+            style="@style/TextViewTitle.Medium"
+            android:text="Solo revisa la conexión."
+            android:gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            app:backgroundTint="@color/blue_22283d"
+            app:cornerRadius="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/btn_retry"
+            android:text="Vuelve a intentarlo"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</ScrollView>

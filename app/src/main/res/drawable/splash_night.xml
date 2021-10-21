@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item>
+       <shape>
+           <solid android:color="#0C0C0C"/>
+       </shape>
+    </item>
+    <!--
+    <item>
+        <bitmap
+            android:src="@drawable/ic_base_splashscreen"/>
+    </item>
+    -->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_app_round"/>
+    </item>
+    <item>
+        <bitmap
+            android:gravity="end|bottom"
+            android:src="@drawable/logo_player_1"/>
+    </item>
+</layer-list>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation"
+            app:startDestination="@+id/navigation_home">
+
+    <fragment
+            android:id="@+id/navigation_home"
+            android:name="com.kevinserrano.apps.leaguenow.ui.fragments.HomeFragment"
+            android:label="HomeFragment"
+            tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_error"
+            app:destination="@id/navigation_error" />
+        <action
+            android:id="@+id/action_navigation_home_to_emptyFragment"
+            app:destination="@id/emptyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_error"
+        android:name="com.kevinserrano.apps.leaguenow.ui.fragments.ErrorFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_error">
+        <action
+            android:id="@+id/action_navigation_error_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_empty"
+        android:id="@+id/emptyFragment"
+        android:name="com.kevinserrano.apps.leaguenow.ui.fragments.EmptyFragment"
+        android:label="EmptyFragment" />
+
+</navigation>

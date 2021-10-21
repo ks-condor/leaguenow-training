@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="6dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_width="40dp"
+        android:padding="6dp"
+        android:src="@drawable/rectangle_white"
+        android:contentDescription="@null"
+        android:layout_height="40dp"
+        android:id="@+id/imgServer" />
+
+    <TextView
+        android:drawablePadding="60dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center|start"
+        android:textStyle="bold"
+        tools:text="English Premier League"
+        android:textSize="16sp"
+        android:minWidth="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/tv_league"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+
+</LinearLayout>

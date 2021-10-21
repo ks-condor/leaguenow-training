@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name" translatable="false">League Now</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_label_teams">⚽ Equipos</string>
+    <string name="title_label_favorite_teams">🥅 Mis equipos favoritos</string>
+    <string name="title_selected_league_s" translatable="false">🏆 %s</string>
+    <string name="title_fab_favorite">Agregar favorito</string>
+    <string name="read_more">Leer más</string>
+    <string name="title_label_eventos">📆 Proximos eventos</string>
+    <string name="read_less">Leer menos</string>
+    <string name="open_facebook">Abrir Facebook</string>
+    <string name="open_youtube">Abrir Youtube</string>
+    <string name="toast_added_favorites">Agregado a favoritos</string>
+    <string name="toast_removed_favorites">Eliminado de favoritos</string>
+    <string name="select_league">Selecciona una liga:</string>
+</resources>
