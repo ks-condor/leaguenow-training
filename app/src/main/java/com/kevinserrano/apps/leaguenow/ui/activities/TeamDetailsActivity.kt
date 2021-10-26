@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat
 import com.kevinserrano.apps.leaguenow.LeagueNowApp
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.ActivityTeamDetailsBinding
-import com.kevinserrano.apps.leaguenow.di.DaggerAppComponent
 import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.DetailsTeamViewModel
@@ -19,7 +18,6 @@ import com.kevinserrano.apps.leaguenow.utilities.bindImageUrl
 import com.kevinserrano.apps.leaguenow.utilities.get
 import com.kevinserrano.apps.leaguenow.utilities.openWebPage
 import com.kevinserrano.apps.leaguenow.utilities.put
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 private const val MAX_LINES_COLLAPSED = 7
