@@ -102,9 +102,11 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
 
-    // Dependency injection Koin
-    implementation "org.koin:koin-android:$versions.koin"
-    implementation "org.koin:koin-androidx-viewmodel:$versions.koin"
+    // Dependency injection
+    //Dagger
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+
 
     / --------------------------Test------------------------ /
     testImplementation 'junit:junit:4.13.2'

@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.kevinserrano.apps.leaguenow.LeagueNowApp
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.ActivityTeamDetailsBinding
+import com.kevinserrano.apps.leaguenow.di.DaggerAppComponent
 import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.DetailsTeamViewModel
@@ -18,6 +20,7 @@ import com.kevinserrano.apps.leaguenow.utilities.get
 import com.kevinserrano.apps.leaguenow.utilities.openWebPage
 import com.kevinserrano.apps.leaguenow.utilities.put
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 private const val MAX_LINES_COLLAPSED = 7
 private const val INITIAL_IS_COLLAPSED = true
@@ -41,13 +44,17 @@ class TeamDetailsActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityTeamDetailsBinding
-    private val detailsTeamViewModel: DetailsTeamViewModel by viewModel()
+
+    @Inject lateinit var detailsTeamViewModel: DetailsTeamViewModel
+
     private val team: TeamModel by lazy {
         get(TeamModel::class.java)
     }
     private var isCollapsed = INITIAL_IS_COLLAPSED
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as LeagueNowApp).appComponent.getDetailTeamComponent()
+            .create(this).inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityTeamDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)

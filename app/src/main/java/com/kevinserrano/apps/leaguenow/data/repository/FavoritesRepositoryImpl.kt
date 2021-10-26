@@ -4,13 +4,15 @@ import androidx.lifecycle.LiveData
 import com.kevinserrano.apps.leaguenow.data.local.Team
 import com.kevinserrano.apps.leaguenow.data.local.FavoritesDao
 import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
-
-class FavoritesRepositoryImpl(private val favoritesDao: FavoritesDao) : FavoritesRepository {
+@Singleton
+class FavoritesRepositoryImpl @Inject constructor(private val favoritesDao: FavoritesDao) : FavoritesRepository {
 
     override fun getFavorites(): LiveData<List<Team>> {
         return favoritesDao.getFavorites()

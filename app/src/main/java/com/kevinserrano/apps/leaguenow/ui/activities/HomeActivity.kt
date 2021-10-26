@@ -5,8 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.kevinserrano.apps.leaguenow.LeagueNowApp
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.ActivityHomeBinding
+import com.kevinserrano.apps.leaguenow.di.HomeComponent
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.SharedViewModel
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.SharedViewModelFactory
 import com.kevinserrano.apps.leaguenow.ui.fragments.showSelectLeagueFragment
@@ -29,8 +31,10 @@ class HomeActivity : AppCompatActivity() {
             ViewModelProvider(this, SharedViewModelFactory.getInstance()).get(SharedViewModel::class.java)
 
     private lateinit var binding: ActivityHomeBinding
+    lateinit var homeComponent: HomeComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        homeComponent = (application as LeagueNowApp).appComponent.getTeamsComponent().create()
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)

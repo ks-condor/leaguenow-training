@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import javax.inject.Inject
 
 /**
  * Created by Kevin Serrano 28/08/21
@@ -14,7 +15,7 @@ abstract class LeagueNowDatabase : RoomDatabase() {
     abstract fun favoritesDao(): FavoritesDao
 
     companion object {
-        private const val DATABASE_NAME = "db_league_now_app"
+        const val DATABASE_NAME = "db_league_now_app"
         @Volatile
         private var INSTANCE: LeagueNowDatabase? = null
         fun getInstance(context: Context): LeagueNowDatabase {

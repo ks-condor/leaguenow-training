@@ -33,7 +33,7 @@ buildscript {
             "material"            : "1.4.0",
             "constraintlayout"    : "2.1.1",
             "navigationFragment"  : "2.3.5",
-            "koin"                : "2.2.1",
+            "dagger"              : "2.39.1",
             "room"                : "2.4.0-alpha04",
             "retrofit"            : "2.9.0",
             "okhttp"              : "4.9.0",

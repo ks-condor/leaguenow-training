@@ -1,22 +1,25 @@
 package com.kevinserrano.apps.leaguenow.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.kevinserrano.apps.leaguenow.LeagueNowApp
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.FragmentHomeBinding
 import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.SharedViewModel
-import com.kevinserrano.apps.leaguenow.presentation.viewModels.TeamsViewModel
+import com.kevinserrano.apps.leaguenow.presentation.viewModels.HomeViewModel
+import com.kevinserrano.apps.leaguenow.ui.activities.HomeActivity
 import com.kevinserrano.apps.leaguenow.ui.activities.TeamDetailsActivity
 import com.kevinserrano.apps.leaguenow.ui.adapters.FavoritesAdapter
 import com.kevinserrano.apps.leaguenow.ui.adapters.TeamsAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -28,7 +31,10 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val teamsViewModel: TeamsViewModel by viewModel()
+    private val homeViewModel: HomeViewModel by lazy {
+        val factory = (requireActivity() as HomeActivity).homeComponent.getTeamsComponentViewModelFactory()
+        ViewModelProvider(this,factory).get(HomeViewModel::class.java)
+    }
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var teamsAdapter: TeamsAdapter
     private lateinit var favoritesAdapter: FavoritesAdapter
@@ -48,6 +54,13 @@ class HomeFragment : Fragment() {
         setUpViews()
         initObservers()
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val activity = (activity as HomeActivity)
+        (activity.application as LeagueNowApp).appComponent.inject(this)
+    }
+
 
     private fun initMembers() {
         favoritesAdapter = FavoritesAdapter(this::showDetailTeam)
@@ -75,9 +88,9 @@ class HomeFragment : Fragment() {
 
     private fun initObservers(){
         sharedViewModel.filterTeams.observe(viewLifecycleOwner,{ leagueId ->
-            teamsViewModel.fetchTeams(leagueId)
+            homeViewModel.fetchTeams(leagueId)
         })
-        teamsViewModel.stateGetFavorites.observe(viewLifecycleOwner,{
+        homeViewModel.stateGetFavorites.observe(viewLifecycleOwner,{
             when (it) {
                 is State.Success -> {
                     binding.lbFteams.visibility = View.VISIBLE
@@ -91,7 +104,7 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        teamsViewModel.stateGetTeams.observe(viewLifecycleOwner,{
+        homeViewModel.stateGetTeams.observe(viewLifecycleOwner,{
             when (it) {
                 is State.Loading -> {
                     teamsAdapter.deleteAll()

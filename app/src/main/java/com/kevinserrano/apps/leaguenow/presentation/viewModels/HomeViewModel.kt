@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 /**
  * Created by Kevin Serrano 28/08/21
  */
-class TeamsViewModel(private val getTeamsUseCase: GetTeamsUseCase,
-private val getFavoritesUseCase: GetFavoritesUseCase) : ViewModel() {
+class HomeViewModel(private val getTeamsUseCase: GetTeamsUseCase,
+                    private val getFavoritesUseCase: GetFavoritesUseCase) : ViewModel() {
 
     private val _stateGetTeams = MutableLiveData<State>()
     val stateGetTeams: LiveData<State> get() = _stateGetTeams

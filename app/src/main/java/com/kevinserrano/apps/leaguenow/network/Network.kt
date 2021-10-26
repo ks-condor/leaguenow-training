@@ -11,7 +11,7 @@ private const val TIME_OUT = 20L
 fun createNetworkClient(baseUrl: String, debug: Boolean = false): Retrofit =
     retrofitClient(baseUrl, httpClient(debug))
 
-private fun httpClient(debug: Boolean): OkHttpClient {
+fun httpClient(debug: Boolean): OkHttpClient {
     val httpLoggingInterceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger.DEFAULT)
     val clientBuilder = OkHttpClient.Builder()
 
@@ -31,7 +31,7 @@ private fun httpClient(debug: Boolean): OkHttpClient {
     return clientBuilder.build()
 }
 
-private fun retrofitClient(baseUrl: String, httpClient: OkHttpClient) =
+fun retrofitClient(baseUrl: String, httpClient: OkHttpClient) =
     Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(httpClient)

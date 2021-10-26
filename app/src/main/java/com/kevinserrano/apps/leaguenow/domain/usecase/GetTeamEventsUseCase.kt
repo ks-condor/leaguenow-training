@@ -1,12 +1,13 @@
 package com.kevinserrano.apps.leaguenow.domain.usecase
 
 import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
+import javax.inject.Inject
 
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
 
-class GetTeamEventsUseCase(private val teamsRepository: TeamsRepository) {
+class GetTeamEventsUseCase @Inject constructor(private val teamsRepository: TeamsRepository) {
     suspend fun run(idTeam: String) = teamsRepository.getEvents(idTeam)
 }
