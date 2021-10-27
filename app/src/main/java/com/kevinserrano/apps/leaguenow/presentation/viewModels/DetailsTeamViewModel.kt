@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
 import com.kevinserrano.apps.leaguenow.domain.usecase.*
 import com.kevinserrano.apps.leaguenow.presentation.state.State
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
-class DetailsTeamViewModel(
+@HiltViewModel
+class DetailsTeamViewModel @Inject constructor(
     private val getTeamEventsUseCase: GetTeamEventsUseCase,
     private val isFavoriteUseCase: IsFavoriteUseCase,
     private val insertFavoriteUseCase: InsertFavoriteUseCase,

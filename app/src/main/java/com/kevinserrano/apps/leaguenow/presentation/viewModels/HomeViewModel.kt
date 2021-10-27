@@ -9,12 +9,15 @@ import com.kevinserrano.apps.leaguenow.domain.usecase.GetFavoritesUseCase
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.domain.usecase.GetTeamsUseCase
 import com.kevinserrano.apps.leaguenow.presentation.mapper.TeamMapper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
-class HomeViewModel(private val getTeamsUseCase: GetTeamsUseCase,
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val getTeamsUseCase: GetTeamsUseCase,
                     private val getFavoritesUseCase: GetFavoritesUseCase) : ViewModel() {
 
     private val _stateGetTeams = MutableLiveData<State>()

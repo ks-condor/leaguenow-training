@@ -1,35 +1,23 @@
 package com.kevinserrano.apps.leaguenow.di
 
-
-import androidx.lifecycle.ViewModelProvider
 import com.kevinserrano.apps.leaguenow.data.local.FavoritesDao
 import com.kevinserrano.apps.leaguenow.data.remote.LeagueNowApi
 import com.kevinserrano.apps.leaguenow.data.repository.FavoritesRepositoryImpl
 import com.kevinserrano.apps.leaguenow.data.repository.TeamsRepositoryImpl
-import com.kevinserrano.apps.leaguenow.domain.usecase.*
-import com.kevinserrano.apps.leaguenow.presentation.viewModels.DetailsTeamViewModel
-import com.kevinserrano.apps.leaguenow.presentation.viewModels.DetailsTeamViewModelFactory
+import com.kevinserrano.apps.leaguenow.domain.usecase.DeleteFavoriteUseCase
+import com.kevinserrano.apps.leaguenow.domain.usecase.GetTeamEventsUseCase
+import com.kevinserrano.apps.leaguenow.domain.usecase.InsertFavoriteUseCase
+import com.kevinserrano.apps.leaguenow.domain.usecase.IsFavoriteUseCase
 import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
 import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
-import com.kevinserrano.apps.leaguenow.ui.activities.TeamDetailsActivity
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
+@InstallIn(ViewModelComponent::class)
 class DetailTeamModule {
-
-    @Provides
-    fun provideDetailsTeamViewModel(activity: TeamDetailsActivity,
-                                    getTeamEventsUseCase: GetTeamEventsUseCase,
-                                           isFavoriteUseCase: IsFavoriteUseCase,
-                                           insertFavoriteUseCase: InsertFavoriteUseCase,
-                                           deleteFavoriteUseCase: DeleteFavoriteUseCase
-    ): DetailsTeamViewModel {
-        val factory = DetailsTeamViewModelFactory(getTeamEventsUseCase, isFavoriteUseCase,
-            insertFavoriteUseCase, deleteFavoriteUseCase)
-        return ViewModelProvider(activity,factory).get(DetailsTeamViewModel::class.java)
-    }
 
     // Domain
     @Provides
@@ -48,6 +36,5 @@ class DetailTeamModule {
     fun providerGetTeamEventsUserCase(teamsRepository: TeamsRepository): GetTeamEventsUseCase{
         return GetTeamEventsUseCase(teamsRepository)
     }
-
 
 }

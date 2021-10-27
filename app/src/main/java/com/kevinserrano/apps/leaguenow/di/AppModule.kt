@@ -1,5 +1,6 @@
 package com.kevinserrano.apps.leaguenow.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.kevinserrano.apps.leaguenow.BuildConfig
@@ -15,17 +16,21 @@ import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
 import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class AppModule {
 
     //Local Database
     @Provides
     @Singleton
-    fun providesDatabase(context: Context): LeagueNowDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): LeagueNowDatabase {
         return Room.databaseBuilder(
             context, LeagueNowDatabase::class.java,
             LeagueNowDatabase.DATABASE_NAME)
@@ -35,7 +40,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesFavoritesDao(database: LeagueNowDatabase): FavoritesDao {
+    fun provideFavoritesDao(database: LeagueNowDatabase): FavoritesDao {
         return database.favoritesDao()
     }
 
@@ -63,7 +68,7 @@ class AppModule {
     }
 
     @Provides
-    fun providerFavoritesRepository(favoritesDao: FavoritesDao): FavoritesRepository {
+    fun provideFavoritesRepository(favoritesDao: FavoritesDao): FavoritesRepository {
         return FavoritesRepositoryImpl(favoritesDao)
     }
 

@@ -11,7 +11,6 @@ import javax.inject.Singleton
 /**
  * Created by Kevin Serrano 28/08/21
  */
-@Singleton
 class FavoritesRepositoryImpl @Inject constructor(private val favoritesDao: FavoritesDao) : FavoritesRepository {
 
     override fun getFavorites(): LiveData<List<Team>> {

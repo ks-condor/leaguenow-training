@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -77,6 +78,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$versions.navigationFragment")
     implementation("androidx.navigation:navigation-ui-ktx:$versions.navigationFragment")
 
+    //Activity KTXs
+    implementation 'androidx.activity:activity-ktx:1.4.0'
 
     /--------------------------- Libraries UI-----------------------------/
 
@@ -103,18 +106,14 @@ dependencies {
 
 
     // Dependency injection
-    //Dagger
-    implementation "com.google.dagger:dagger:$versions.dagger"
-    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$versions.dagger_hilt"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
 
 
     / --------------------------Test------------------------ /
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    // Koin testing tools
-    testImplementation "io.insert-koin:koin-test:$versions.koin"
-    // Needed JUnit version
-    testImplementation "io.insert-koin:koin-test-junit4:$versions.koin"
 
 }

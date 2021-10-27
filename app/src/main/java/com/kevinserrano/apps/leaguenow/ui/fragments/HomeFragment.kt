@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.kevinserrano.apps.leaguenow.LeagueNowApp
@@ -20,21 +21,20 @@ import com.kevinserrano.apps.leaguenow.ui.activities.HomeActivity
 import com.kevinserrano.apps.leaguenow.ui.activities.TeamDetailsActivity
 import com.kevinserrano.apps.leaguenow.ui.adapters.FavoritesAdapter
 import com.kevinserrano.apps.leaguenow.ui.adapters.TeamsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
 
-    private val homeViewModel: HomeViewModel by lazy {
-        val factory = (requireActivity() as HomeActivity).homeComponent.getTeamsComponentViewModelFactory()
-        ViewModelProvider(this,factory).get(HomeViewModel::class.java)
-    }
+    private val homeViewModel: HomeViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var teamsAdapter: TeamsAdapter
     private lateinit var favoritesAdapter: FavoritesAdapter
@@ -53,12 +53,6 @@ class HomeFragment : Fragment() {
         initMembers()
         setUpViews()
         initObservers()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val activity = (activity as HomeActivity)
-        (activity.application as LeagueNowApp).appComponent.inject(this)
     }
 
 

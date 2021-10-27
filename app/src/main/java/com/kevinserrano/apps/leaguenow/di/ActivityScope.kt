@@ -1,7 +1,0 @@
-package com.kevinserrano.apps.leaguenow.di
-
-import javax.inject.Scope
-
-@Scope
-@Retention(value = AnnotationRetention.RUNTIME)
-annotation class ActivityScope

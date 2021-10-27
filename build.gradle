@@ -33,7 +33,7 @@ buildscript {
             "material"            : "1.4.0",
             "constraintlayout"    : "2.1.1",
             "navigationFragment"  : "2.3.5",
-            "dagger"              : "2.39.1",
+            "dagger_hilt"                : "2.38.1",
             "room"                : "2.4.0-alpha04",
             "retrofit"            : "2.9.0",
             "okhttp"              : "4.9.0",
@@ -51,7 +51,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin_library"
-
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.dagger_hilt"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
