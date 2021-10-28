@@ -70,6 +70,9 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewmodel")
 
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle_version")
+
     //Rooms
     implementation("androidx.room:room-ktx:$versions.room")
     kapt "androidx.room:room-compiler:$versions.room"

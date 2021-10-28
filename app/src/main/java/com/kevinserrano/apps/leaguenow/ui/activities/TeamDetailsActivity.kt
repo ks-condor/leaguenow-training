@@ -9,6 +9,7 @@ import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.ActivityTeamDetailsBinding
 import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
@@ -19,6 +20,9 @@ import com.kevinserrano.apps.leaguenow.utilities.get
 import com.kevinserrano.apps.leaguenow.utilities.openWebPage
 import com.kevinserrano.apps.leaguenow.utilities.put
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 private const val MAX_LINES_COLLAPSED = 7
 private const val INITIAL_IS_COLLAPSED = true
@@ -56,7 +60,7 @@ class TeamDetailsActivity : AppCompatActivity() {
         binding = ActivityTeamDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpViews()
-        initObservers()
+        collectUiState()
         detailsTeamViewModel.isFavorite(teamPresentation.idTeam)
     }
 
@@ -71,31 +75,40 @@ class TeamDetailsActivity : AppCompatActivity() {
         applyLayoutTransition()
     }
 
-    private fun initObservers() {
-        detailsTeamViewModel.stateIsFavorite.observe(this, {
-            val drawableId: Int = if (it) {
-                R.drawable.ic_baseline_favorite_24
-            } else {
-                R.drawable.ic_baseline_favorite_border_24
+    private fun collectUiState() {
+
+        lifecycleScope.launch {
+                detailsTeamViewModel.stateIsFavorite.collect() { isFavorite ->
+                    val drawableId: Int = if (isFavorite) {
+                        R.drawable.ic_baseline_favorite_24
+                    } else {
+                        R.drawable.ic_baseline_favorite_border_24
+                    }
+                    binding.btnFabFavorite.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this@TeamDetailsActivity, drawableId
+                        )
+                    )
+                }
+        }
+        lifecycleScope.launch {
+            detailsTeamViewModel.stateGetTeamEvents.collect() { state ->
+                when (state) {
+                    is State.Loading -> {
+
+                    }
+                    is State.Success -> {
+
+                    }
+                    is State.Empty -> {
+
+                    }
+                    else -> {
+
+                    }
+                }
             }
-            binding.btnFabFavorite.setImageDrawable(ContextCompat.getDrawable(this, drawableId))
-        })
-        detailsTeamViewModel.stateGetTeamEvents.observe(this, {
-            when (it) {
-                is State.Loading -> {
-
-                }
-                is State.Success -> {
-
-                }
-                is State.Empty -> {
-
-                }
-                else -> {
-
-                }
-            }
-        })
+        }
     }
 
 

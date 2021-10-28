@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.FragmentHomeBinding
@@ -18,6 +21,9 @@ import com.kevinserrano.apps.leaguenow.ui.activities.TeamDetailsActivity
 import com.kevinserrano.apps.leaguenow.ui.adapters.FavoritesAdapter
 import com.kevinserrano.apps.leaguenow.ui.adapters.TeamsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 /**
@@ -48,7 +54,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initMembers()
         setUpViews()
-        initObservers()
+        collectUiState()
     }
 
 
@@ -76,44 +82,48 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initObservers(){
+    private fun collectUiState(){
         sharedViewModel.filterTeams.observe(viewLifecycleOwner,{ leagueId ->
             homeViewModel.fetchTeams(leagueId)
         })
-        homeViewModel.stateGetFavorites.observe(viewLifecycleOwner,{
-            when (it) {
-                is State.Success -> {
-                    binding.lbFteams.visibility = View.VISIBLE
-                    favoritesAdapter.setFavorites(it.responseTo())
-                }
-                is State.Empty -> {
-                    binding.lbFteams.visibility = View.GONE
-                }
-                else -> {
-                    binding.lbFteams.visibility = View.GONE
-                }
-            }
-        })
-        homeViewModel.stateGetTeams.observe(viewLifecycleOwner,{
-            when (it) {
-                is State.Loading -> {
-                    teamsAdapter.deleteAll()
-                    showLoading()
-                }
-                is State.Success -> {
-                    hideLoading()
-                    teamsAdapter.setTeams(it.responseTo())
-                }
-                is State.Empty -> {
-                    hideLoading()
-                    findNavController().navigate(R.id.action_navigation_home_to_emptyFragment)
-                }
-                else -> {
-                    hideLoading()
-                    findNavController().navigate(R.id.action_navigation_home_to_navigation_error)
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.stateGetFavorites.collect() { state ->
+                when (state) {
+                    is State.Success -> {
+                        binding.lbFteams.visibility = View.VISIBLE
+                        favoritesAdapter.setFavorites(state.responseTo())
+                    }
+                    is State.Empty -> {
+                        binding.lbFteams.visibility = View.GONE
+                    }
+                    else -> {
+                        binding.lbFteams.visibility = View.GONE
+                    }
                 }
             }
-        })
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.stateGetTeams.collect() { state ->
+                when (state) {
+                    is State.Loading -> {
+                        teamsAdapter.deleteAll()
+                        showLoading()
+                    }
+                    is State.Success -> {
+                        hideLoading()
+                        teamsAdapter.setTeams(state.responseTo())
+                    }
+                    is State.Empty -> {
+                        hideLoading()
+                        findNavController().navigate(R.id.action_navigation_home_to_emptyFragment)
+                    }
+                    else -> {
+                        hideLoading()
+                        findNavController().navigate(R.id.action_navigation_home_to_navigation_error)
+                    }
+                }
+            }
+        }
     }
 
     private fun showDetailTeam(teamPresentation: TeamPresentation) {

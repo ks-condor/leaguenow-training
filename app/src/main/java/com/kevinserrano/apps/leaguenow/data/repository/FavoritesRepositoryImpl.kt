@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.kevinserrano.apps.leaguenow.data.models.Team
 import com.kevinserrano.apps.leaguenow.data.local.FavoritesDao
 import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
@@ -12,7 +13,7 @@ import javax.inject.Inject
  */
 class FavoritesRepositoryImpl @Inject constructor(private val favoritesDao: FavoritesDao) : FavoritesRepository {
 
-    override fun getFavorites(): LiveData<List<Team>> {
+    override fun getFavorites(): Flow<List<Team>> {
         return favoritesDao.getFavorites()
     }
 

@@ -3,6 +3,7 @@ package com.kevinserrano.apps.leaguenow.data.local
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.kevinserrano.apps.leaguenow.data.models.Team
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Kevin Serrano 28/08/21
@@ -17,7 +18,7 @@ interface FavoritesDao {
     suspend fun delete(idTeam:String)
 
     @Query("SELECT * FROM team")
-    fun getFavorites(): LiveData<List<Team>>
+    fun getFavorites(): Flow<List<Team>>
 
     @Query("SELECT * FROM team WHERE idTeam = :idTeam LIMIT 1")
     suspend fun existFavorite(idTeam:String): Team?

@@ -10,6 +10,7 @@ import com.kevinserrano.apps.leaguenow.domain.usecase.*
 import com.kevinserrano.apps.leaguenow.presentation.mapper.TeamMapper
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,10 +26,10 @@ class DetailsTeamViewModel @Inject constructor(
 ) : ViewModel() {
 
     //Observers objects
-    private val _stateGetTeamEvents = MutableLiveData<State>()
-    val stateGetTeamEvents: LiveData<State> get() = _stateGetTeamEvents
-    private val _stateIsFavorite = MutableLiveData<Boolean>()
-    val stateIsFavorite: LiveData<Boolean> get() = _stateIsFavorite
+    private val _stateGetTeamEvents = MutableStateFlow<State>(State.Loading)
+    val stateGetTeamEvents: MutableStateFlow<State> get() = _stateGetTeamEvents
+    private val _stateIsFavorite = MutableStateFlow(false)
+    val stateIsFavorite: MutableStateFlow<Boolean> get() = _stateIsFavorite
     private var isFavorite = false
 
     fun fetchTeamEvents(idTeam: String) {
@@ -44,7 +45,7 @@ class DetailsTeamViewModel @Inject constructor(
     fun isFavorite(idTeam: String) {
         viewModelScope.launch {
             isFavorite = isFavoriteUseCase.run(idTeam)
-            _stateIsFavorite.postValue(isFavorite)
+            _stateIsFavorite.value = isFavorite
         }
     }
 
@@ -60,17 +61,18 @@ class DetailsTeamViewModel @Inject constructor(
                 else
                     isFavorite
             }
-            _stateIsFavorite.postValue(isFavorite)
+            _stateIsFavorite.value = isFavorite
         }
     }
 
     private fun handleGetTeamsFailure(failure: Throwable) {
-        _stateGetTeamEvents.postValue(State.Failed(failure.localizedMessage ?: ""))
+        _stateGetTeamEvents.value = State.Failed(failure.localizedMessage ?: "")
     }
 
     private fun handleGetTeamsSuccess(teams: List<TeamDomain>) {
-        if (teams.isNullOrEmpty()) _stateGetTeamEvents.postValue(State.Empty)
+        if (teams.isNullOrEmpty()) _stateGetTeamEvents.value = State.Empty
         else
-            _stateGetTeamEvents.postValue(State.Success(TeamMapper.fromDomainToPresentation(teams)))
+            _stateGetTeamEvents.value = State.Success(TeamMapper.fromDomainToPresentation(teams))
     }
+
 }

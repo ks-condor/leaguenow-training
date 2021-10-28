@@ -2,6 +2,7 @@ package com.kevinserrano.apps.leaguenow.repository
 
 import androidx.lifecycle.LiveData
 import com.kevinserrano.apps.leaguenow.data.models.Team
+import kotlinx.coroutines.flow.Flow
 
 
 /**
@@ -9,7 +10,7 @@ import com.kevinserrano.apps.leaguenow.data.models.Team
  */
 interface FavoritesRepository{
 
-    fun getFavorites(): LiveData<List<Team>>
+    fun getFavorites(): Flow<List<Team>>
 
     suspend fun insertFavorite(favorite: Team):Long
 

@@ -11,6 +11,9 @@ import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.domain.usecase.GetTeamsUseCase
 import com.kevinserrano.apps.leaguenow.presentation.mapper.TeamMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,17 +24,16 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val getTeamsUseCase: GetTeamsUseCase,
                     private val getFavoritesUseCase: GetFavoritesUseCase) : ViewModel() {
 
-    private val _stateGetTeams = MutableLiveData<State>()
-    val stateGetTeams: LiveData<State> get() = _stateGetTeams
-    private val _stateGetFavorites = MutableLiveData<State>()
-    val stateGetFavorites: LiveData<State> get() = _stateGetFavorites
+    private val _stateGetTeams = MutableStateFlow<State>(State.Loading)
+    val stateGetTeams: StateFlow<State> get() = _stateGetTeams
+    private val _stateGetFavorites = MutableStateFlow<State>(State.Empty)
+    val stateGetFavorites: StateFlow<State> get() = _stateGetFavorites
 
     init {
         getFavorites()
     }
 
     fun fetchTeams(idLeguea: String) {
-        _stateGetTeams.value = State.Loading
         viewModelScope.launch {
             getTeamsUseCase.run(idLeguea).either(
                 ::handleGetTeamsFailure,
@@ -42,7 +44,7 @@ class HomeViewModel @Inject constructor(private val getTeamsUseCase: GetTeamsUse
 
     private fun getFavorites(){
         viewModelScope.launch {
-            getFavoritesUseCase.run().observeForever {
+            getFavoritesUseCase.run().collect {
                 val favorites = TeamMapper.fromDBToPresentation(it)
                 _stateGetFavorites.value = if(favorites.isEmpty())
                     State.Empty
@@ -53,12 +55,12 @@ class HomeViewModel @Inject constructor(private val getTeamsUseCase: GetTeamsUse
     }
 
     private fun handleGetTeamsFailure(failure: Throwable) {
-        _stateGetTeams.postValue(State.Failed(failure.localizedMessage ?: ""))
+        _stateGetTeams.value = State.Failed(failure.localizedMessage ?: "")
     }
 
     private fun handleGetTeamsSuccess(teams:List<TeamDomain>) {
-        if (teams.isNullOrEmpty()) _stateGetTeams.postValue(State.Empty)
+        _stateGetTeams.value = if (teams.isNullOrEmpty()) State.Empty
         else
-            _stateGetTeams.postValue(State.Success(TeamMapper.fromDomainToPresentation(teams)))
+            State.Success(TeamMapper.fromDomainToPresentation(teams))
     }
 }
