@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import javax.inject.Inject
+import com.kevinserrano.apps.leaguenow.data.models.Team
 
 /**
  * Created by Kevin Serrano 28/08/21

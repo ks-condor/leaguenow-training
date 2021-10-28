@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.ActivityTeamDetailsBinding
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.DetailsTeamViewModel
 import com.kevinserrano.apps.leaguenow.utilities.bindImageUrl
@@ -30,13 +30,13 @@ private const val INITIAL_IS_COLLAPSED = true
 class TeamDetailsActivity : AppCompatActivity() {
 
     companion object {
-        fun startActivity(context: Context, team: TeamModel) {
+        fun startActivity(context: Context, teamPresentation: TeamPresentation) {
             context.startActivity(
                 Intent(
                     context,
                     TeamDetailsActivity::class.java
                 ).apply {
-                    put(team)
+                    put(teamPresentation)
                 }
             )
         }
@@ -46,8 +46,8 @@ class TeamDetailsActivity : AppCompatActivity() {
 
     private val detailsTeamViewModel: DetailsTeamViewModel by viewModels()
 
-    private val team: TeamModel by lazy {
-        get(TeamModel::class.java)
+    private val teamPresentation: TeamPresentation by lazy {
+        get(TeamPresentation::class.java)
     }
     private var isCollapsed = INITIAL_IS_COLLAPSED
 
@@ -57,16 +57,16 @@ class TeamDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         setUpViews()
         initObservers()
-        detailsTeamViewModel.isFavorite(team.idTeam)
+        detailsTeamViewModel.isFavorite(teamPresentation.idTeam)
     }
 
 
     private fun setUpViews() {
-        binding.tvTeamName.text = team.strTeam
-        binding.tvDescription.text = team.strDescriptionES
-        binding.tvTeamFoundationYear.text = team.intFormedYear
-        binding.banner.bindImageUrl(team.strTeamBanner)
-        binding.badge.bindImageUrl(team.strTeamBadge)
+        binding.tvTeamName.text = teamPresentation.strTeam
+        binding.tvDescription.text = teamPresentation.strDescriptionES
+        binding.tvTeamFoundationYear.text = teamPresentation.intFormedYear
+        binding.banner.bindImageUrl(teamPresentation.strTeamBanner)
+        binding.badge.bindImageUrl(teamPresentation.strTeamBadge)
         binding.tvDescription.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
         applyLayoutTransition()
     }
@@ -139,15 +139,15 @@ class TeamDetailsActivity : AppCompatActivity() {
     }
 
     fun onFabYoutube(view: View) {
-        openWebPage(team.strYoutube)
+        openWebPage(teamPresentation.strYoutube)
     }
 
     fun onFabFacebook(view: View) {
-        openWebPage(team.strFacebook)
+        openWebPage(teamPresentation.strFacebook)
     }
 
     fun onFabFavorite(view: View) {
-        detailsTeamViewModel.favorite(team)
+        detailsTeamViewModel.favorite(teamPresentation)
     }
 
 }

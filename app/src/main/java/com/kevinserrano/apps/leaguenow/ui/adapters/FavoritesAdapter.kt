@@ -8,18 +8,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kevinserrano.apps.leaguenow.R
-import com.kevinserrano.apps.leaguenow.data.local.Team
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.utilities.CallbackT
 import com.kevinserrano.apps.leaguenow.utilities.bindImageUrl
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
-class FavoritesAdapter(private val callbackDetailTeam: CallbackT<TeamModel>) :
+class FavoritesAdapter(private val callbackDetailTeamPresentation: CallbackT<TeamPresentation>) :
     RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder>() {
 
-    private var recyclerViewItems = emptyList<TeamModel>()
+    private var recyclerViewItems = emptyList<TeamPresentation>()
 
     inner class FavoriteViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -27,12 +26,12 @@ class FavoritesAdapter(private val callbackDetailTeam: CallbackT<TeamModel>) :
         private val name: TextView = itemView.findViewById(R.id.name)
         private val league: TextView = itemView.findViewById(R.id.league)
 
-        fun bind(team: TeamModel) = with(itemView) {
-            badge.bindImageUrl(url = team.strTeamBadge, width = 100, height = 100)
-            name.text = team.strTeam
-            league.text = team.strStadium
+        fun bind(teamPresentation: TeamPresentation) = with(itemView) {
+            badge.bindImageUrl(url = teamPresentation.strTeamBadge, width = 100, height = 100)
+            name.text = teamPresentation.strTeam
+            league.text = teamPresentation.strStadium
             itemView.setOnClickListener {
-                callbackDetailTeam.invoke(team)
+                callbackDetailTeamPresentation.invoke(teamPresentation)
             }
         }
     }
@@ -61,7 +60,7 @@ class FavoritesAdapter(private val callbackDetailTeam: CallbackT<TeamModel>) :
         return recyclerViewItems.size
     }
 
-    fun setFavorites(recyclerViewItems: List<TeamModel>) {
+    fun setFavorites(recyclerViewItems: List<TeamPresentation>) {
         this.recyclerViewItems = recyclerViewItems
         notifyDataSetChanged()
     }

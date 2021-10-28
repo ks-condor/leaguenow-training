@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.domain.models.TeamDomain
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.domain.usecase.*
+import com.kevinserrano.apps.leaguenow.presentation.mapper.TeamMapper
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -46,13 +48,13 @@ class DetailsTeamViewModel @Inject constructor(
         }
     }
 
-    fun favorite(team: TeamModel) {
+    fun favorite(teamPresentation: TeamPresentation) {
         viewModelScope.launch {
             isFavorite = if (isFavorite) {
-                deleteFavoriteUseCase.run(team.idTeam)
+                deleteFavoriteUseCase.run(teamPresentation.idTeam)
                 false
             } else {
-                val resultCode = insertFavoriteUseCase.run(team.toLocalData())
+                val resultCode = insertFavoriteUseCase.run(TeamMapper.toDB(teamPresentation))
                 if (resultCode >= 1L)
                     true
                 else
@@ -66,9 +68,9 @@ class DetailsTeamViewModel @Inject constructor(
         _stateGetTeamEvents.postValue(State.Failed(failure.localizedMessage ?: ""))
     }
 
-    private fun handleGetTeamsSuccess(teams: List<TeamModel>) {
+    private fun handleGetTeamsSuccess(teams: List<TeamDomain>) {
         if (teams.isNullOrEmpty()) _stateGetTeamEvents.postValue(State.Empty)
         else
-            _stateGetTeamEvents.postValue(State.Success(teams))
+            _stateGetTeamEvents.postValue(State.Success(TeamMapper.fromDomainToPresentation(teams)))
     }
 }

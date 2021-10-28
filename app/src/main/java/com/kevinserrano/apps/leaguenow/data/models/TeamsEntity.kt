@@ -1,7 +1,7 @@
-package com.kevinserrano.apps.leaguenow.data.remote
+package com.kevinserrano.apps.leaguenow.data.models
 
 import com.google.gson.annotations.SerializedName
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.utilities.completeUrl
 
 /**
@@ -83,18 +83,5 @@ class TeamsEntity(
         val strWebsite: String? = null,
         @SerializedName("strYoutube")
         val strYoutube: String? = null
-    ) {
-        fun toDomain() = TeamModel(
-            idTeam = idTeam ?: "",
-            strTeam = strTeam ?: "",
-            strTeamBanner = strTeamBanner ?: "",
-            strTeamBadge = strTeamBadge ?: "",
-            strStadium = strStadium ?: "",
-            strTeamJersey = strTeamJersey ?: "",
-            strFacebook = (strFacebook ?: "").completeUrl(),
-            strYoutube = (strYoutube ?: "").completeUrl(),
-            strDescriptionES = strDescriptionES ?: "",
-            intFormedYear = intFormedYear ?: ""
-        )
-    }
+    )
 }

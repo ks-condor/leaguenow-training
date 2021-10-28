@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.domain.models.TeamDomain
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.domain.usecase.GetFavoritesUseCase
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.domain.usecase.GetTeamsUseCase
@@ -55,9 +56,9 @@ class HomeViewModel @Inject constructor(private val getTeamsUseCase: GetTeamsUse
         _stateGetTeams.postValue(State.Failed(failure.localizedMessage ?: ""))
     }
 
-    private fun handleGetTeamsSuccess(teams:List<TeamModel>) {
+    private fun handleGetTeamsSuccess(teams:List<TeamDomain>) {
         if (teams.isNullOrEmpty()) _stateGetTeams.postValue(State.Empty)
         else
-            _stateGetTeams.postValue(State.Success(teams))
+            _stateGetTeams.postValue(State.Success(TeamMapper.fromDomainToPresentation(teams)))
     }
 }

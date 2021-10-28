@@ -8,17 +8,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kevinserrano.apps.leaguenow.R
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.utilities.CallbackT
 import com.kevinserrano.apps.leaguenow.utilities.bindImageUrl
 
 /**
  * Created by Kevin Serrano 28/08/21
  */
-class TeamsAdapter(private val callbackDetailTeam: CallbackT<TeamModel>) :
+class TeamsAdapter(private val callbackDetailTeamPresentation: CallbackT<TeamPresentation>) :
     RecyclerView.Adapter<TeamsAdapter.TeamViewHolder>() {
 
-    private var recyclerViewItems = emptyList<TeamModel>()
+    private var recyclerViewItems = emptyList<TeamPresentation>()
 
     inner class TeamViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -26,12 +26,12 @@ class TeamsAdapter(private val callbackDetailTeam: CallbackT<TeamModel>) :
         private val name: TextView = itemView.findViewById(R.id.name)
         private val stadium: TextView = itemView.findViewById(R.id.stadium)
 
-        fun bind(team: TeamModel) = with(itemView) {
-            badge.bindImageUrl(url = team.strTeamBadge, width = 100, height = 100)
-            name.text = team.strTeam
-            stadium.text = team.strStadium
+        fun bind(teamPresentation: TeamPresentation) = with(itemView) {
+            badge.bindImageUrl(url = teamPresentation.strTeamBadge, width = 100, height = 100)
+            name.text = teamPresentation.strTeam
+            stadium.text = teamPresentation.strStadium
             itemView.setOnClickListener {
-                callbackDetailTeam.invoke(team)
+                callbackDetailTeamPresentation.invoke(teamPresentation)
             }
         }
     }
@@ -65,7 +65,7 @@ class TeamsAdapter(private val callbackDetailTeam: CallbackT<TeamModel>) :
         notifyDataSetChanged()
     }
 
-    fun setTeams(recyclerViewItems: List<TeamModel>) {
+    fun setTeams(recyclerViewItems: List<TeamPresentation>) {
         this.recyclerViewItems = recyclerViewItems
         notifyDataSetChanged()
     }

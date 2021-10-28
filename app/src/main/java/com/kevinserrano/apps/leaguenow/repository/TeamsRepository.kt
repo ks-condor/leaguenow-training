@@ -1,7 +1,8 @@
 package com.kevinserrano.apps.leaguenow.repository
 
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.common.Either
+import com.kevinserrano.apps.leaguenow.domain.models.TeamDomain
 
 
 /**
@@ -9,6 +10,6 @@ import com.kevinserrano.apps.leaguenow.common.Either
  */
 
 interface TeamsRepository {
-    suspend fun getTeams(idLeguea: String): Either<Throwable, List<TeamModel>>
-    suspend fun getEvents(idTeamm: String): Either<Throwable, List<TeamModel>>
+    suspend fun getTeams(idLeguea: String): Either<Throwable, List<TeamDomain>>
+    suspend fun getEvents(idTeamm: String): Either<Throwable, List<TeamDomain>>
 }

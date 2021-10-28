@@ -1,8 +1,7 @@
 package com.kevinserrano.apps.leaguenow.repository
 
 import androidx.lifecycle.LiveData
-import com.kevinserrano.apps.leaguenow.data.local.Team
-import javax.inject.Inject
+import com.kevinserrano.apps.leaguenow.data.models.Team
 
 
 /**

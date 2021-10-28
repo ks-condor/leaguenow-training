@@ -1,6 +1,5 @@
 package com.kevinserrano.apps.leaguenow.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,16 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.kevinserrano.apps.leaguenow.LeagueNowApp
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.FragmentHomeBinding
-import com.kevinserrano.apps.leaguenow.domain.models.TeamModel
+import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.presentation.state.State
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.SharedViewModel
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.HomeViewModel
-import com.kevinserrano.apps.leaguenow.ui.activities.HomeActivity
 import com.kevinserrano.apps.leaguenow.ui.activities.TeamDetailsActivity
 import com.kevinserrano.apps.leaguenow.ui.adapters.FavoritesAdapter
 import com.kevinserrano.apps.leaguenow.ui.adapters.TeamsAdapter
@@ -120,8 +116,8 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun showDetailTeam(team: TeamModel) {
-        TeamDetailsActivity.startActivity(requireContext(),team)
+    private fun showDetailTeam(teamPresentation: TeamPresentation) {
+        TeamDetailsActivity.startActivity(requireContext(),teamPresentation)
     }
 
 

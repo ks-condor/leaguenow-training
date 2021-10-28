@@ -1,5 +1,6 @@
 package com.kevinserrano.apps.leaguenow.data.remote
 
+import com.kevinserrano.apps.leaguenow.data.models.TeamsEntity
 import retrofit2.http.*
 
 /**

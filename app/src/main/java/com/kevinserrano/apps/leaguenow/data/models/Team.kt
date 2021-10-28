@@ -1,4 +1,4 @@
-package com.kevinserrano.apps.leaguenow.data.local
+package com.kevinserrano.apps.leaguenow.data.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

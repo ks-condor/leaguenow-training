@@ -1,11 +1,10 @@
 package com.kevinserrano.apps.leaguenow.data.repository
 
 import androidx.lifecycle.LiveData
-import com.kevinserrano.apps.leaguenow.data.local.Team
+import com.kevinserrano.apps.leaguenow.data.models.Team
 import com.kevinserrano.apps.leaguenow.data.local.FavoritesDao
 import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 /**

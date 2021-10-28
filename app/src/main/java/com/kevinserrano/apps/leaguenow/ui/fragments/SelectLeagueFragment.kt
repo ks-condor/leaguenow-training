@@ -10,6 +10,7 @@ import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.FragmentSelectLeagueBinding
 import com.kevinserrano.apps.leaguenow.presentation.models.LeaguePresentation
 import com.kevinserrano.apps.leaguenow.ui.adapters.SelecLeaguesAdapter
+import com.kevinserrano.apps.leaguenow.utilities.leagues
 
 
 /**
@@ -20,24 +21,7 @@ class SelectVideoServerFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentSelectLeagueBinding? = null
     private val binding get() = _binding!!
-    private val leagues = listOf(
-        LeaguePresentation(
-            idLeague = "4328",
-            strLeagueAlternate = "Premier League"
-        ),
-        LeaguePresentation(
-            idLeague = "4331",
-            strLeagueAlternate = "Bundesliga"
-        ),
-        LeaguePresentation(
-            idLeague = "4951",
-            strLeagueAlternate = "Torneo Águila"
-        ),
-        LeaguePresentation(
-            idLeague = "4335",
-            strLeagueAlternate = "Spanish La Liga"
-        )
-    )
+
     var onSelectListener: (league: LeaguePresentation) -> Unit = {}
 
     override fun onCreateView(

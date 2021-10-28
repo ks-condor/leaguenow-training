@@ -2,6 +2,7 @@ package com.kevinserrano.apps.leaguenow.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.kevinserrano.apps.leaguenow.data.models.Team
 
 /**
  * Created by Kevin Serrano 28/08/21
