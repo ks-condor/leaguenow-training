@@ -1,6 +1,5 @@
-package com.kevinserrano.apps.leaguenow.repository
+package com.kevinserrano.apps.leaguenow.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.kevinserrano.apps.leaguenow.data.models.Team
 import kotlinx.coroutines.flow.Flow
 
@@ -14,7 +13,7 @@ interface FavoritesRepository{
 
     suspend fun insertFavorite(favorite: Team):Long
 
-    suspend fun deleteFavorite(id:String)
+    suspend fun deleteFavorite(id:String):Int
 
     suspend fun existFavorite(id:String): Boolean
 

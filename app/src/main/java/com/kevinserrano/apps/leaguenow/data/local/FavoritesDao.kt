@@ -15,7 +15,7 @@ interface FavoritesDao {
     suspend fun insert(favorite: Team):Long
 
     @Query("DELETE FROM team WHERE idTeam = :idTeam")
-    suspend fun delete(idTeam:String)
+    suspend fun delete(idTeam:String):Int
 
     @Query("SELECT * FROM team")
     fun getFavorites(): Flow<List<Team>>

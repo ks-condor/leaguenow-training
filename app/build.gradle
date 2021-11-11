@@ -51,6 +51,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -71,10 +74,12 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewmodel")
 
     // Lifecycles only (without ViewModel or LiveData)
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle_version")
 
     //Rooms
     implementation("androidx.room:room-ktx:$versions.room")
+    implementation 'androidx.test:core-ktx:1.4.0'
     kapt "androidx.room:room-compiler:$versions.room"
 
     // Navigation Fragment
@@ -115,8 +120,20 @@ dependencies {
 
 
     / --------------------------Test------------------------ /
+    //Unit test
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test:runner:1.4.0'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
+    testImplementation "io.mockk:mockk:1.12.0"
+    testImplementation 'androidx.room:room-testing:2.3.0'
+
+    //UI test
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-alpha04'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0-alpha04'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0-alpha04'
+    androidTestImplementation 'org.mockito:mockito-android:3.0.0'
 
 }

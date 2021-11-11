@@ -1,9 +1,8 @@
 package com.kevinserrano.apps.leaguenow.data.repository
 
-import androidx.lifecycle.LiveData
 import com.kevinserrano.apps.leaguenow.data.models.Team
 import com.kevinserrano.apps.leaguenow.data.local.FavoritesDao
-import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.FavoritesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -21,7 +20,7 @@ class FavoritesRepositoryImpl @Inject constructor(private val favoritesDao: Favo
         return favoritesDao.insert(favorite)
     }
 
-    override suspend fun deleteFavorite(id: String) {
+    override suspend fun deleteFavorite(id: String): Int {
         return favoritesDao.delete(id)
     }
 

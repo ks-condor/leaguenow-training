@@ -4,13 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.kevinserrano.apps.leaguenow.LeagueNowApp
 import com.kevinserrano.apps.leaguenow.R
 import com.kevinserrano.apps.leaguenow.databinding.ActivityHomeBinding
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.SharedViewModel
 import com.kevinserrano.apps.leaguenow.presentation.viewModels.SharedViewModelFactory
 import com.kevinserrano.apps.leaguenow.ui.fragments.showSelectLeagueFragment
+import com.kevinserrano.apps.leaguenow.utilities.ID_LEAGUE_SPAIN
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -37,12 +38,12 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        sharedViewModel.filterTeams("4335")
+        sharedViewModel.filterTeams(ID_LEAGUE_SPAIN)
         binding.btnRetry.text = getString(R.string.title_selected_league_s,
             "Spanish La Liga")
     }
 
-    fun onSelectLeague(view: android.view.View) {
+    fun onSelectLeague(view: View) {
         showSelectLeagueFragment {
             sharedViewModel.filterTeams(it.idLeague)
             binding.btnRetry.text = getString(R.string.title_selected_league_s,

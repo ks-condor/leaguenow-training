@@ -110,14 +110,14 @@
                 android:text="@string/title_label_eventos" />
 
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/lb_events"
-                android:textColor="@color/blue_22283d"
                 style="@style/TextViewTitle.Small"
-                android:text="No disponibles"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lb_events"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="No disponibles"
+                android:textColor="@color/blue_22283d" />
 
         </RelativeLayout>
 

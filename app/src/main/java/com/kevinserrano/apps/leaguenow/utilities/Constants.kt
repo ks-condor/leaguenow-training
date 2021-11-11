@@ -3,6 +3,7 @@ package com.kevinserrano.apps.leaguenow.utilities
 import com.kevinserrano.apps.leaguenow.presentation.models.LeaguePresentation
 
 
+const val ID_LEAGUE_SPAIN = "4335"
 
 //lists
 val leagues = listOf(

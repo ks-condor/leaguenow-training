@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
  */
 class SharedViewModelFactory: ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>) = with(modelClass) {
+    override fun <T : ViewModel> create(modelClass: Class<T>) = with(modelClass) {
         when {
             isAssignableFrom(SharedViewModel::class.java) -> SharedViewModel.getInstance()
             else -> throw IllegalArgumentException("Unknown viewModel class $modelClass")

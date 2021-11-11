@@ -22,7 +22,8 @@ class DetailsTeamViewModel @Inject constructor(
     private val getTeamEventsUseCase: GetTeamEventsUseCase,
     private val isFavoriteUseCase: IsFavoriteUseCase,
     private val insertFavoriteUseCase: InsertFavoriteUseCase,
-    private val deleteFavoriteUseCase: DeleteFavoriteUseCase
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
+    private val mapper:TeamMapper
 ) : ViewModel() {
 
     //Observers objects
@@ -55,7 +56,7 @@ class DetailsTeamViewModel @Inject constructor(
                 deleteFavoriteUseCase.run(teamPresentation.idTeam)
                 false
             } else {
-                val resultCode = insertFavoriteUseCase.run(TeamMapper.toDB(teamPresentation))
+                val resultCode = insertFavoriteUseCase.run(mapper.toDB(teamPresentation))
                 if (resultCode >= 1L)
                     true
                 else
@@ -72,7 +73,7 @@ class DetailsTeamViewModel @Inject constructor(
     private fun handleGetTeamsSuccess(teams: List<TeamDomain>) {
         if (teams.isNullOrEmpty()) _stateGetTeamEvents.value = State.Empty
         else
-            _stateGetTeamEvents.value = State.Success(TeamMapper.fromDomainToPresentation(teams))
+            _stateGetTeamEvents.value = State.Success(mapper.fromDomainToPresentation(teams))
     }
 
 }

@@ -1,6 +1,5 @@
 package com.kevinserrano.apps.leaguenow.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.kevinserrano.apps.leaguenow.BuildConfig
@@ -9,11 +8,11 @@ import com.kevinserrano.apps.leaguenow.data.local.LeagueNowDatabase
 import com.kevinserrano.apps.leaguenow.data.remote.LeagueNowApi
 import com.kevinserrano.apps.leaguenow.data.repository.FavoritesRepositoryImpl
 import com.kevinserrano.apps.leaguenow.data.repository.TeamsRepositoryImpl
-import com.kevinserrano.apps.leaguenow.domain.usecase.*
 import com.kevinserrano.apps.leaguenow.network.httpClient
 import com.kevinserrano.apps.leaguenow.network.retrofitClient
-import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
-import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.FavoritesRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.TeamsRepository
+import com.kevinserrano.apps.leaguenow.presentation.mapper.TeamMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,6 +43,10 @@ class AppModule {
         return database.favoritesDao()
     }
 
+    @Provides
+    fun provideTeamMapper():TeamMapper{
+        return TeamMapper
+    }
 
     //Network
     @Provides
@@ -63,8 +66,8 @@ class AppModule {
     fun provideApiService(retrofit: Retrofit) = retrofit.create(LeagueNowApi::class.java)
 
     @Provides
-    fun provideTeamsRepository(leagueNowApi: LeagueNowApi): TeamsRepository {
-        return TeamsRepositoryImpl(leagueNowApi)
+    fun provideTeamsRepository(leagueNowApi: LeagueNowApi, mapper:TeamMapper): TeamsRepository {
+        return TeamsRepositoryImpl(leagueNowApi,mapper)
     }
 
     @Provides

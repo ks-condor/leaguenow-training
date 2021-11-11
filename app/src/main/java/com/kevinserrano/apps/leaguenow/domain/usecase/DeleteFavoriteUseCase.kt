@@ -1,7 +1,7 @@
 package com.kevinserrano.apps.leaguenow.domain.usecase
 
 
-import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.FavoritesRepository
 import javax.inject.Inject
 
 /**

@@ -1,6 +1,6 @@
 package com.kevinserrano.apps.leaguenow.domain.usecase
 
-import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.TeamsRepository
 import javax.inject.Inject
 
 

@@ -17,7 +17,7 @@ import com.kevinserrano.apps.leaguenow.utilities.leagues
  * Created by Kevin Serrano 28/08/21
  */
 
-class SelectVideoServerFragment : BottomSheetDialogFragment() {
+class SelectLeagueFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentSelectLeagueBinding? = null
     private val binding get() = _binding!!
@@ -64,12 +64,12 @@ class SelectVideoServerFragment : BottomSheetDialogFragment() {
 }
 
 fun FragmentActivity?.showSelectLeagueFragment(onSelectListener: (league: LeaguePresentation) -> Unit) {
-    val fragment = SelectVideoServerFragment()
+    val fragment = SelectLeagueFragment()
     fragment.onSelectListener = onSelectListener
     this?.let {
         fragment.show(
             it.supportFragmentManager,
-            SelectVideoServerFragment::class.java.name
+            SelectLeagueFragment::class.java.name
         )
     }
 }

@@ -8,7 +8,7 @@ import com.kevinserrano.apps.leaguenow.utilities.completeUrl
  * Created by Kevin Serrano 28/08/21
  */
 
-class TeamsEntity(
+data class TeamsEntity(
     @SerializedName("teams")
     val teams: List<Team> = emptyList()
 ) {
@@ -24,7 +24,7 @@ class TeamsEntity(
         @SerializedName("intFormedYear")
         val intFormedYear: String? = null,
         @SerializedName("intLoved")
-        val intLoved: Any,
+        val intLoved: Any = "",
         @SerializedName("intStadiumCapacity")
         val intStadiumCapacity: String? = null,
         @SerializedName("strAlternate")
@@ -36,7 +36,7 @@ class TeamsEntity(
         @SerializedName("strDescriptionES")
         val strDescriptionES: String? = null,
         @SerializedName("strDivision")
-        val strDivision: Any,
+        val strDivision: Any = "",
         @SerializedName("strFacebook")
         val strFacebook: String? = null,
         @SerializedName("strGender")
@@ -76,7 +76,7 @@ class TeamsEntity(
         @SerializedName("strTeamLogo")
         val strTeamLogo: String? = null,
         @SerializedName("strTeamShort")
-        val strTeamShort: Any,
+        val strTeamShort: Any = "",
         @SerializedName("strTwitter")
         val strTwitter: String? = null,
         @SerializedName("strWebsite")

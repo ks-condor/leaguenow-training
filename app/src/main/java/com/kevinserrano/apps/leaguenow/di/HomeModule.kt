@@ -2,8 +2,8 @@ package com.kevinserrano.apps.leaguenow.di
 
 
 import com.kevinserrano.apps.leaguenow.domain.usecase.*
-import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
-import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.FavoritesRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.TeamsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,5 @@
-package com.kevinserrano.apps.leaguenow.repository
+package com.kevinserrano.apps.leaguenow.domain.repository
 
-import com.kevinserrano.apps.leaguenow.presentation.models.TeamPresentation
 import com.kevinserrano.apps.leaguenow.common.Either
 import com.kevinserrano.apps.leaguenow.domain.models.TeamDomain
 

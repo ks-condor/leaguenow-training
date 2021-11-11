@@ -27,6 +27,11 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/LeagueNow/app/src/main/res/layout/item_team.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/LeagueNow/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2109375" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/LeagueNow/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.20459132189707366" />
+        <entry key="app/src/main/res/layout/activity_team_details.xml" value="0.14945652173913043" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19399596367305752" />
+        <entry key="app/src/main/res/layout/fragment_select_league.xml" value="0.20459132189707366" />
+        <entry key="app/src/main/res/layout/item_team.xml" value="0.19399596367305752" />
       </map>
     </option>
   </component>

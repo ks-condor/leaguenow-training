@@ -1,15 +1,11 @@
 package com.kevinserrano.apps.leaguenow.di
 
-import com.kevinserrano.apps.leaguenow.data.local.FavoritesDao
-import com.kevinserrano.apps.leaguenow.data.remote.LeagueNowApi
-import com.kevinserrano.apps.leaguenow.data.repository.FavoritesRepositoryImpl
-import com.kevinserrano.apps.leaguenow.data.repository.TeamsRepositoryImpl
 import com.kevinserrano.apps.leaguenow.domain.usecase.DeleteFavoriteUseCase
 import com.kevinserrano.apps.leaguenow.domain.usecase.GetTeamEventsUseCase
 import com.kevinserrano.apps.leaguenow.domain.usecase.InsertFavoriteUseCase
 import com.kevinserrano.apps.leaguenow.domain.usecase.IsFavoriteUseCase
-import com.kevinserrano.apps.leaguenow.repository.FavoritesRepository
-import com.kevinserrano.apps.leaguenow.repository.TeamsRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.FavoritesRepository
+import com.kevinserrano.apps.leaguenow.domain.repository.TeamsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
